@@ -39,11 +39,10 @@ namespace GitApp.Data
 
                 var repository = new Repository()
                 {
-                    RepositoryID = repos.First().RepositoryID,
-                    RepositoryName = repos.First().RepositoryName,
-                    UserName = repos.First().UserName,
-                    CreatedDate = repos.First().CreatedDate,
-                    LastModifiedDate = repos.First().LastModifiedDate
+                    id = repos.First().id,
+                    name = repos.First().name,
+                    created_at = repos.First().created_at,
+                    url = repos.First().url
                 };
 
                 _ctx.Repositories.Add(repository);

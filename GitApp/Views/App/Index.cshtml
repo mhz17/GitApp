@@ -1,12 +1,18 @@
-﻿@model RepositoryViewModel
+﻿@model RepositoriesViewModel
 @{
     ViewBag.Title = "Git App";
 }
 <h1>This is @ViewBag.Title</h1>
 
-@foreach (Repository repoItem in @ViewBag.Repo)
-{
-    <li>@repoItem.RepositoryName</li>
-}
+<form method="post">
+    
+    <ul>
+        @foreach (Repository repoItem in Model.repositories)
+        {
+            <li>Name: <a asp-controller="Index" asp-action="">@repoItem.name</a> <button type="submit" class="btn btn-success">View Details</button><p><a href="@repoItem.html_url" target="_blank">@repoItem.html_url</a></p></li>
+        }
+    </ul>
+
+</form>
 
 

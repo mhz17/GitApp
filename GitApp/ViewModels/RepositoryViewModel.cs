@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GitApp.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace GitApp.ViewModels
         public int id { get; set; }
         [Required]
         public string name { get; set; }
-        [Required]
+
         public string full_name { get; set; }
-        public IEnumerable<OwnerViewModel> owner { get; set; }
+        public Owner owner { get; set; }
         public bool @private { get; set; }
         public string html_url { get; set; }
         public object description { get; set; }

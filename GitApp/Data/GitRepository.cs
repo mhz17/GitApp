@@ -26,7 +26,7 @@ namespace GitApp.Data
                 _logger.LogInformation("GetAllRepositories was called");
 
                 return _ctx.Repositories
-                    .OrderBy(p => p.RepositoryName)
+                    .OrderBy(p => p.name)
                     .ToList();
 
             }

@@ -1,0 +1,17 @@
+﻿using GitApp.Data.Entities;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GitApp.ViewModels
+{
+    public class RepositoriesViewModel
+    {
+       public IEnumerable<Repository> repositories { get; set; }
+       public string Category { get; set; }
+
+    }
+}
