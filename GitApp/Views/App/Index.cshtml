@@ -1,0 +1,12 @@
+﻿@model RepositoryViewModel
+@{
+    ViewBag.Title = "Git App";
+}
+<h1>This is @ViewBag.Title</h1>
+
+@foreach (Repository repoItem in @ViewBag.Repo)
+{
+    <li>@repoItem.RepositoryName</li>
+}
+
+

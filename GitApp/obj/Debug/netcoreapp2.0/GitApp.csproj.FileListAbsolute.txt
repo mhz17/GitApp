@@ -1,0 +1,11 @@
+C:\Users\mzielinska\Documents\Visual Studio 2017\Projects\GitApp\GitApp\bin\Debug\netcoreapp2.0\GitApp.deps.json
+C:\Users\mzielinska\Documents\Visual Studio 2017\Projects\GitApp\GitApp\bin\Debug\netcoreapp2.0\GitApp.runtimeconfig.json
+C:\Users\mzielinska\Documents\Visual Studio 2017\Projects\GitApp\GitApp\bin\Debug\netcoreapp2.0\GitApp.runtimeconfig.dev.json
+C:\Users\mzielinska\Documents\Visual Studio 2017\Projects\GitApp\GitApp\bin\Debug\netcoreapp2.0\GitApp.dll
+C:\Users\mzielinska\Documents\Visual Studio 2017\Projects\GitApp\GitApp\obj\Debug\netcoreapp2.0\GitApp.csprojResolveAssemblyReference.cache
+C:\Users\mzielinska\Documents\Visual Studio 2017\Projects\GitApp\GitApp\obj\Debug\netcoreapp2.0\GitApp.csproj.CoreCompileInputs.cache
+C:\Users\mzielinska\Documents\Visual Studio 2017\Projects\GitApp\GitApp\obj\Debug\netcoreapp2.0\GitApp.AssemblyInfoInputs.cache
+C:\Users\mzielinska\Documents\Visual Studio 2017\Projects\GitApp\GitApp\obj\Debug\netcoreapp2.0\GitApp.AssemblyInfo.cs
+C:\Users\mzielinska\Documents\Visual Studio 2017\Projects\GitApp\GitApp\bin\Debug\netcoreapp2.0\GitApp.pdb
+C:\Users\mzielinska\Documents\Visual Studio 2017\Projects\GitApp\GitApp\obj\Debug\netcoreapp2.0\GitApp.dll
+C:\Users\mzielinska\Documents\Visual Studio 2017\Projects\GitApp\GitApp\obj\Debug\netcoreapp2.0\GitApp.pdb

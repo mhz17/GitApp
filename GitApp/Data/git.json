@@ -1,0 +1,16 @@
+[
+  {
+    "RepositoryID": "1",
+    "RepositoryName": "MyApp",
+    "UserName": "mhz17",
+    "CreatedDate": "2018-01-02 09:50:00",
+    "LastModifiedDate": "2018-02-02 10:00:00"
+  },
+  {
+    "RepositoryID": "2",
+    "RepositoryName": "My Git App",
+    "UserName": "mhz17",
+    "CreatedDate": "2018-01-01 09:50:00",
+    "LastModifiedDate": "2018-02-01 10:00:00"
+  }
+]
