@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
 
 namespace GitApp
 {
@@ -28,7 +29,7 @@ namespace GitApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<GitContext>();
-            // services.AddTransient<GitSeeder>();
+            services.AddAutoMapper();
             services.AddScoped<IGitRepository, GitRepository>();
             services.AddMvc();
         }

@@ -6,6 +6,7 @@ namespace GitApp.Data
     public interface IGitRepository
     {
         IEnumerable<Repository> GetAllRepositories();
+        Repository GetRepositoryByID(int id);
         bool SaveAll();
     }
 }

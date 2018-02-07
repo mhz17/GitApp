@@ -7,44 +7,41 @@ using GitApp.Data.Entities;
 using GitApp.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using GitApp.Data;
+using AutoMapper;
 
 namespace GitApp.Controllers
 {
     public class AppController : Controller
     {
         private readonly IHostingEnvironment _hosting;
-        public AppController(IHostingEnvironment hosting)
+        private readonly IGitRepository _repository;
+        private readonly IMapper _mapper;
+
+        public AppController(IHostingEnvironment hosting, IGitRepository repository, IMapper mapper)
         {
             _hosting = hosting;
+            _repository = repository;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            var filepath = Path.Combine(_hosting.ContentRootPath, "Data/git.json");
-            var json = System.IO.File.ReadAllText(filepath);
-            IEnumerable<Repository> gitRepo = JsonConvert.DeserializeObject<IEnumerable<Repository>>(json);
+
             RepositoriesViewModel repoViewModel = new RepositoriesViewModel();
-            repoViewModel.repositories = gitRepo;
+            repoViewModel.repositories = _repository.GetAllRepositories();
 
             return View(repoViewModel);
         }
 
-        public IActionResult Repose()
+        public IActionResult ViewDetails(int id)
         {
-            return View();
+            RepositoryViewModel repoModel = new RepositoryViewModel();
+            Repository newRecord = _repository.GetRepositoryByID(id);
+       
+            return View("RepoDetails", _mapper.Map<Repository, RepositoryViewModel>(newRecord));
         }
-
-        [HttpPost]
-        public IActionResult Index(int id)
-        {
-            return View("RepoDetails");
-        }
-
-        public IActionResult RepoDetails()
-        {
-            return View();
-        }
-
     }
 }

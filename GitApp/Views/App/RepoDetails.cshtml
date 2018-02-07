@@ -3,5 +3,19 @@
     ViewData["Title"] = "RepoDetails";
 }
 
-<h2><label asp-for="name"></label></h2>
+<div>
+
+
+    <h2>@Model.name</h2>
+    <ul>
+        <li>@Model.downloads_url</li>
+        <li>@Model.full_name</li>
+        <li>@Model.url</li>
+        <li>@Model.owner.id</li>
+        <li>@Model.size</li>
+    </ul>
+
+    <a href="@Url.Action("Index", "App")" class="btn btn-danger">Go Back</a>
+</div>
+
 

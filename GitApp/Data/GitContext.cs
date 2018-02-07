@@ -11,5 +11,6 @@ namespace GitApp.Data
     public class GitContext: DbContext
     {
         public DbSet<Repository> Repositories { get; set; }
+        public DbSet<Owner> Owners { get; set; }
     }
 }

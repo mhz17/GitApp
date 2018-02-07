@@ -25,7 +25,6 @@ namespace GitApp.Data
 
         public void Seed()
         {
-            _ctx.Database.EnsureCreated();
 
             if (!_ctx.Repositories.Any())
             {
