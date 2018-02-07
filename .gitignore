@@ -2,22 +2,7 @@
 *proj.user
 
 .vs/
-/GitApp/bin/*
+/GitApp/bin
 /GitApp/bower_components
 /GitApp/obj
 
-/**/bin/**/*
-/./**/bin/**/*
-./**/bin/**/*
-**/bin/**/*
-*/bin/**/*
-bin/**/*
-/**/bin/* #and the others with just * at the end too
-
-/**/bower_components/**/*
-/./**/bower_components/**/*
-./**/bower_components/**/*
-**/bower_components/**/*
-*/bower_components/**/*
-bower_components/**/*
-/**/bower_components/* #and the others with just * at the end too
