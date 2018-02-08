@@ -34,6 +34,7 @@ namespace GitApp.Data
 
                 var filepath = Path.Combine(_hosting.ContentRootPath, "Data/git.json");
                 var json = System.IO.File.ReadAllText(filepath);
+
                 IEnumerable<Repository> gitRepo = JsonConvert.DeserializeObject<IEnumerable<Repository>>(json);
                 return gitRepo.OrderByDescending(p => p.pushed_at);
 

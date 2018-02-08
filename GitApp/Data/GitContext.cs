@@ -12,5 +12,6 @@ namespace GitApp.Data
     {
         public DbSet<Repository> Repositories { get; set; }
         public DbSet<Owner> Owners { get; set; }
+
     }
 }

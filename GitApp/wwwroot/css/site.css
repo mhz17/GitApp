@@ -4,3 +4,7 @@
 .container, footer {
     margin-top: 20px;
 }
+
+.col-md-4 > input {
+    margin: 0 5px 0 5px;
+}

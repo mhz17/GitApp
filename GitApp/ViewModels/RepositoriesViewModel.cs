@@ -13,5 +13,6 @@ namespace GitApp.ViewModels
     {
        public IEnumerable<Repository> repositories { get; set; }
        public IEnumerable<Owner> Owner { get; set; }
+       public string UserName { get; set; }
     }
 }

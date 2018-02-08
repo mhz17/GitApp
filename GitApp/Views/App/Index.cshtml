@@ -1,22 +1,28 @@
 ﻿@model RepositoriesViewModel
 
-<h3>My Git Repositories</h3>
+
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-5"><h3>Git Repositories - @Model.UserName</h3></div>
+        <div class="col-md-4 offset-8 form-inline"><label>Username:</label> <input id="username" asp-for="UserName" /><button type="submit" class="btn btn-sm btn-primary">OK</button></div>
+    </div>
+</form>
 
 <hr />
-        @foreach (Repository repoItem in Model.repositories)
-        {
 
+    @foreach (Repository repoItem in Model.repositories)
+    {
 
-<div class="row">
-    <div class="col-md-2">@repoItem.name</div>
-    <div class="col-md-2"><a asp-controller="App" asp-action="ViewDetails" asp-route-id=@repoItem.id class="btn btn-sm btn-success">View Details</a></div>
-    <div class="col-md-4"><p><a href="@repoItem.html_url" target="_blank">@repoItem.html_url</a></p></div>
-    <div class="col-md-2"><p>@repoItem.pushed_at</p></div>
+        <div class="row">
+            <div class="col-md-2">@repoItem.name</div>
+            <div class="col-md-2"><a asp-controller="App" asp-action="ViewDetails" asp-route-username="@repoItem.owner.login" asp-route-id=@repoItem.id class="btn btn-sm btn-success">View Details</a></div>
+            <div class="col-md-4"><p><a href="@repoItem.html_url" target="_blank">@repoItem.html_url</a></p></div>
+            <div class="col-md-2"><p>@repoItem.pushed_at</p></div>
 
-</div>
+        </div>
 
-
-        }
+    }
 
 
 

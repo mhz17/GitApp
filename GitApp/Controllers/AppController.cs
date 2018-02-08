@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using GitApp.Data;
 using AutoMapper;
+using System.Net.Http;
+using Microsoft.Extensions.Logging;
 
 namespace GitApp.Controllers
 {
@@ -19,29 +21,115 @@ namespace GitApp.Controllers
         private readonly IHostingEnvironment _hosting;
         private readonly IGitRepository _repository;
         private readonly IMapper _mapper;
-
-        public AppController(IHostingEnvironment hosting, IGitRepository repository, IMapper mapper)
+        private readonly ILogger<AppController> _logger;
+        public AppController(IHostingEnvironment hosting, IGitRepository repository, IMapper mapper, ILogger<AppController> logger)
         {
             _hosting = hosting;
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
+            try
+            {
+                RepositoriesViewModel repoViewModel = GetRepoViewModel("mhz17");
+                if (repoViewModel != null)
+                {
+                    return View(repoViewModel);
+                }
+                else
+                {
+                    return View("Error");
+                }
 
-            RepositoriesViewModel repoViewModel = new RepositoriesViewModel();
-            repoViewModel.repositories = _repository.GetAllRepositories();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error getting gitData from github: {ex.Message}");
+            }
 
-            return View(repoViewModel);
         }
 
-        public IActionResult ViewDetails(int id)
+
+        [HttpPost]
+        public IActionResult Index(string username)
         {
-            RepositoryViewModel repoModel = new RepositoryViewModel();
-            Repository newRecord = _repository.GetRepositoryByID(id);
-       
-            return View("RepoDetails", _mapper.Map<Repository, RepositoryViewModel>(newRecord));
+            try
+            {
+                RepositoriesViewModel repoViewModel = GetRepoViewModel(username);
+                if (repoViewModel  != null)
+                {
+                    return View(GetRepoViewModel(username));
+                }
+                else
+                {
+                    return View("Error");
+                }
+              
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error getting gitData from github: {ex.Message}");
+            }
         }
+
+        public IActionResult ViewDetails(int id, string username)
+        {
+
+            using (var client = new HttpClient())
+            {
+                Repository repo = new Repository();
+                RepositoryViewModel repoViewModel = new RepositoryViewModel();
+                client.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "http://developer.github.com/v3/#user-agent-required");
+                var task = client.GetAsync($"https://api.github.com/users/{username}/repos")
+                    .ContinueWith((taskwithresponse) =>
+                    {
+                       var response = taskwithresponse.Result.Content.ReadAsStringAsync();
+                        response.Wait();
+                        IEnumerable<Repository> gitData = JsonConvert.DeserializeObject<IEnumerable<Repository>>(response.Result);
+                        repo = gitData.Where(i => i.id == id).First();
+                    });
+
+                task.Wait();
+
+                return View("RepoDetails", _mapper.Map<Repository, RepositoryViewModel>(repo));
+
+            }
+
+        }
+
+        public RepositoriesViewModel GetRepoViewModel(string username)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    RepositoriesViewModel repoViewModel = new RepositoriesViewModel();
+                    client.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "http://developer.github.com/v3/#user-agent-required");
+                    var task = client.GetAsync($"https://api.github.com/users/{username}/repos")
+                        .ContinueWith((taskwithresponse) =>
+                        {
+                            var response = taskwithresponse.Result.Content.ReadAsStringAsync();
+                            response.Wait();
+                            IEnumerable<Repository> gitData = JsonConvert.DeserializeObject<IEnumerable<Repository>>(response.Result);
+                            repoViewModel.repositories = gitData;
+                            repoViewModel.UserName = username;
+                        });
+
+                    task.Wait();
+                    return repoViewModel;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError("Error: " + ex);
+                    return null;
+                }
+
+            }
+        }
+     
     }
 }
