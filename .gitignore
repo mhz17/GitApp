@@ -6,3 +6,4 @@
 /GitApp/bower_components
 /GitApp/obj
 
+*.log
